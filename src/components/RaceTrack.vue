@@ -1,5 +1,5 @@
 <template>
-  <div class="race-track-wrapper w-full">
+  <div class="race-track-wrapper">
     <div class="track-header">
       <h2 class="flex items-center gap-3 text-xl font-bold text-white">
         <span class="text-2xl">🏁</span>
@@ -34,7 +34,6 @@
 
           <div class="lane-static-info">
             <span class="horse-name-static">{{ horse.name }}</span>
-            <span class="condition-badge">{{ horse.conditionScore }}</span>
           </div>
 
           <div class="racing-line">
@@ -111,139 +110,114 @@ export default {
 </script>
 
 <style scoped>
-.race-track-wrapper {
-  background: rgba(20, 20, 32, 0.95);
-  border-radius: 16px;
-  padding: 24px;
-  min-height: 600px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  width: 100%;  
-  max-width: 100%;  
-}
-
-.track-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.round-badge {
-  background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(253, 121, 168, 0.3);
-}
-
-.empty-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 500px;
-}
-
-.empty-content {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .track-container {
   position: relative;
-  padding: 40px 80px 60px 200px;
+  padding: 19px 36px 38px 64px;
   background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  width: 100%;  
-  max-width: 100%; 
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto; 
+  overflow-x: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.track-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.track-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.track-container::-webkit-scrollbar-thumb {
+  background: rgba(253, 121, 168, 0.5);
+  border-radius: 3px;
+}
+
+.track-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(253, 121, 168, 0.7);
 }
 
 .start-line {
   position: absolute;
-  left: 185px;
-  top: 40px;
-  bottom: 60px;
-  width: 4px;
+  left: 60px;
+  top: 12px;
+  bottom: 40px;
+  width: 2px;
   background: repeating-linear-gradient(
     0deg,
     #4ade80,
-    #4ade80 15px,
-    transparent 15px,
-    transparent 30px
+    #4ade80 10px,
+    transparent 10px,
+    transparent 20px
   );
   z-index: 5;
 }
 
 .start-text {
   position: absolute;
-  top: -25px;
+  top: -16px;
   left: 50%;
   transform: translateX(-50%);
   color: #4ade80;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 9px;
   white-space: nowrap;
 }
 
 .lanes-container {
   position: relative;
   z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 0;
+  padding: 3px 0;
 }
 
 .lane {
-  height: 54px;
+  height: auto;
+  min-height: 32px;
   position: relative;
-  margin-bottom: 6px;
   display: flex;
   align-items: center;
 }
 
 .lane-number {
   position: absolute;
-  left: -185px;
-  width: 32px;
-  height: 32px;
+  left: -60px;
+  width: 18px;
+  height: 18px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 9px;
   color: rgba(255, 255, 255, 0.6);
   z-index: 2;
 }
 
 .lane-static-info {
   position: absolute;
-  left: -145px;
+  left: -38px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   z-index: 2;
 }
 
 .horse-name-static {
-  font-size: 13px;
+  font-size: 8px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.7);
   white-space: nowrap;
-}
-
-.condition-badge {
-  background: rgba(253, 121, 168, 0.2);
-  color: #fd79a8;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 4px;
 }
 
 .racing-line {
@@ -262,10 +236,10 @@ export default {
   height: 1px;
   background: repeating-linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.2) 0px,
-    rgba(255, 255, 255, 0.2) 25px,
-    transparent 25px,
-    transparent 50px
+    rgba(255, 255, 255, 0.15) 0px,
+    rgba(255, 255, 255, 0.15) 15px,
+    transparent 15px,
+    transparent 30px
   );
   transform: translateY(-50%);
 }
@@ -277,7 +251,7 @@ export default {
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   transition: left 0.1s linear;
   z-index: 10;
 }
@@ -285,29 +259,29 @@ export default {
 .horse-name-moving {
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 8px;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .horse-avatar {
-  width: 44px;
-  height: 44px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.3);
   position: relative;
 }
 
 .horse-emoji {
-  font-size: 26px;
+  font-size: 16px;
   animation: gallop 0.4s infinite;
 }
 
@@ -321,40 +295,40 @@ export default {
     transform: translateY(0) rotate(0deg);
   }
   25% {
-    transform: translateY(-2px) rotate(-3deg);
+    transform: translateY(-1.5px) rotate(-2deg);
   }
   50% {
     transform: translateY(0) rotate(0deg);
   }
   75% {
-    transform: translateY(-2px) rotate(3deg);
+    transform: translateY(-1.5px) rotate(2deg);
   }
 }
 
 .finish-line {
   position: absolute;
-  right: 65px;
-  top: 40px;
-  bottom: 60px;
-  width: 6px;
+  right: 17px;
+  top: 12px;
+  bottom: 40px;
+  width: 3px;
   background: repeating-linear-gradient(
     0deg,
     #000,
-    #000 15px,
-    #fff 15px,
-    #fff 30px
+    #000 10px,
+    #fff 10px,
+    #fff 20px
   );
   z-index: 5;
-  border-radius: 3px;
-  box-shadow: 0 0 20px rgba(253, 121, 168, 0.5);
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(253, 121, 168, 0.4);
 }
 
 .finish-flag {
   position: absolute;
-  top: -35px;
+  top: -24px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 28px;
+  font-size: 18px;
   animation: wave-flag 1s infinite;
 }
 
@@ -370,21 +344,21 @@ export default {
 
 .finish-text {
   position: absolute;
-  bottom: -35px;
+  bottom: -28px;
   left: 50%;
   transform: translateX(-50%);
   color: #fd79a8;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 9px;
   white-space: nowrap;
 }
 
 .distance-markers {
   position: absolute;
-  bottom: 20px;
-  left: 200px;
-  right: 80px;
-  height: 20px;
+  bottom: 28px;
+  left: 75px;
+  right: 65px;
+  height: 16px;
   display: flex;
   justify-content: space-between;
 }
@@ -396,86 +370,82 @@ export default {
 }
 
 .marker span {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 600;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
 }
 
 .marker::before {
   content: "";
   display: block;
-  width: 2px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 0 auto 4px;
+  width: 1px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 auto 3px;
 }
 
-@media (max-width: 1024px) {
-  .track-container {
-    padding: 40px 60px 60px 180px;
-  }
-
-  .lane-number {
-    left: -165px;
-  }
-
-  .lane-static-info {
-    left: -125px;
-  }
-
-  .start-line {
-    left: 165px;
-  }
-
-  .distance-markers {
-    left: 180px;
-  }
+.race-track-wrapper {
+  background: rgba(20, 20, 32, 0.95);
+  border-radius: 12px;
+  padding: 8px;
+  height: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .track-container {
-    padding: 40px 40px 60px 150px;
-  }
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
 
-  .lane-number {
-    left: -135px;
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
+.track-header h2 {
+  font-size: 14px;
+}
 
-  .lane-static-info {
-    left: -100px;
-  }
+.track-header .text-2xl {
+  font-size: 1.25rem;
+}
 
-  .horse-name-static {
-    font-size: 11px;
-  }
+.round-badge {
+  background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(253, 121, 168, 0.25);
+}
 
-  .start-line {
-    left: 135px;
-  }
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
 
-  .distance-markers {
-    left: 150px;
-  }
+.empty-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .finish-line {
-    right: 25px;
-  }
+.empty-content span {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
 
-  .horse-avatar {
-    width: 38px;
-    height: 38px;
-  }
-
-  .horse-emoji {
-    font-size: 22px;
-  }
-
-  .horse-name-moving {
-    font-size: 10px;
-    padding: 3px 8px;
-  }
+.empty-content p {
+  font-size: 13px;
 }
 </style>
