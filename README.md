@@ -11,7 +11,8 @@ An interactive horse racing game built with Vue.js, featuring real-time animatio
 
 <h3>✨ Live Version </h3>
 
-### [You can see the live version here.](https://vercel.com/kardelens-projects/horse-racing-game/CqG7umhZJD6yyZ3kyKBDLYNat3sP)
+
+### [You can see the live version here.](https://horse-racing-game-two.vercel.app/)
 
 ![Horse Racing Game](https://img.shields.io/badge/Vue.js-2.x-green) ![Vuex](https://img.shields.io/badge/Vuex-3.x-blue) ![Tailwind](https://img.shields.io/badge/Tailwind-3.x-cyan)
 
