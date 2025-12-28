@@ -1,23 +1,15 @@
 <template>
   <div class="horse-list">
-    <h2
-      class="flex items-center gap-3 text-lg font-semibold mb-5 pb-3 border-b border-primary/30"
-    >
-      <span class="text-2xl">🐴</span>
+    <h2 class="flex items-center gap-2 text-base font-semibold mb-3 pb-2 border-b border-primary/30">
+      <span class="text-xl">🐴</span>
       Horses ({{ horses.length }})
     </h2>
 
-    <div
-      v-if="horses.length === 0"
-      class="text-center py-16 text-white/50 text-sm"
-    >
-      <p>Click "Generate Program" to create horses</p>
+    <div v-if="horses.length === 0" class="text-center py-12 text-white/50 text-xs">
+      <p>Click "Generate Program"</p>
     </div>
 
-    <div
-      v-else
-      class="horses-container space-y-2.5 max-h-[650px] overflow-y-auto pr-1.5"
-    >
+    <div v-else class="horses-container flex-1 space-y-2 overflow-y-auto pr-1">
       <div
         v-for="horse in horses"
         :key="horse.id"
@@ -25,21 +17,19 @@
         :class="{ 'racing-highlight': isHorseRacing(horse.id) }"
       >
         <div
-          class="flex items-center justify-center w-11 h-11 rounded-full flex-shrink-0 shadow-lg"
+          class="flex items-center justify-center w-9 h-9 rounded-full flex-shrink-0 shadow-lg"
           :style="{ backgroundColor: horse.color }"
         >
-          <span class="text-2xl">🐴</span>
+          <span class="text-lg">🐴</span>
         </div>
 
         <div class="flex-1 min-w-0">
-          <div class="font-semibold text-sm text-white mb-1">
+          <div class="font-semibold text-xs text-white mb-0.5">
             {{ horse.name }}
           </div>
-          <div class="flex items-center gap-1.5 text-xs">
+          <div class="flex items-center gap-1 text-[10px]">
             <span class="text-white/60">Condition:</span>
-            <span
-              class="bg-primary/30 text-blue-400 px-2 py-0.5 rounded font-semibold"
-            >
+            <span class="bg-primary/30 text-blue-400 px-1.5 py-0.5 rounded font-semibold">
               {{ horse.conditionScore }}
             </span>
           </div>
@@ -65,7 +55,7 @@ export default {
 
   methods: {
     isHorseRacing(horseId) {
-      if (!this.currentRound || !this.$store.state.isRaceStarted) return false; // round henüz başlamadıysa ya da start basılmadıysa
+      if (!this.currentRound || !this.$store.state.isRaceStarted) return false;
       return this.currentRound.horses.some((h) => h.id === horseId);
     },
   },
@@ -73,8 +63,15 @@ export default {
 </script>
 
 <style scoped>
+.horse-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
 .horses-container::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 .horses-container::-webkit-scrollbar-track {
@@ -94,8 +91,8 @@ export default {
 .horse-card {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -106,13 +103,12 @@ export default {
 .horse-card:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(102, 126, 234, 0.3);
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .racing-highlight {
   background: rgba(102, 126, 234, 0.15);
   border-color: rgba(102, 126, 234, 0.5);
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.2),
-    0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.2);
 }
 </style>

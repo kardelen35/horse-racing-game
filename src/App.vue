@@ -2,11 +2,10 @@
   <div id="app">
     <RaceControls />
     <div class="main-container">
-      <HorseList class="sidebar left-sidebar" />
+      <HorseList class="sidebar" />
       <RaceTrack class="race-area" />
     </div>
-          <ResultsPanel class="sidebar right-sidebar" />
-
+    <ResultsPanel />
   </div>
 </template>
 
@@ -39,41 +38,66 @@ body {
   background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
   color: #fff;
   min-height: 100vh;
+  overflow: hidden; 
 }
 
 #app {
-  padding: 20px;
-  max-width: 100%;
+  padding: 15px; 
+  width: 100%;
+  max-width: 100vw;
   margin: 0 auto;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .main-container {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: 240px 1fr; 
+  gap: 15px; 
+  margin-top: 15px; 
+  width: 100%;
+  flex: 1;
+  min-height: 0; 
 }
 
 .sidebar {
   background: rgba(30, 30, 46, 0.9);
   border-radius: 12px;
-  padding: 20px;
+  padding: 15px; 
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
 }
 
 .race-area {
-  background: rgba(20, 20, 32, 0.95);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  overflow: hidden; 
+  min-height: 0;
 }
 
 @media (max-width: 1200px) {
   .main-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 10px;
+  }
+
+  .main-container {
+    gap: 10px;
+    margin-top: 10px;
   }
 }
 </style>

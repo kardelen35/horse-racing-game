@@ -117,9 +117,9 @@ export default {
 <style scoped>
 .race-controls-wrapper {
   background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 8px 12px; /* ← KÜÇÜLT: 10px 14px → 8px 12px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -128,36 +128,52 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .title-section {
   flex: 1;
-  min-width: 300px;
+  min-width: 180px; 
+}
+
+.title-section h1 {
+  font-size: 14px; 
+  line-height: 1.1;
+}
+
+.title-section p {
+  font-size: 10px; 
+  margin-top: 1px;
+}
+
+.title-section .text-4xl {
+  font-size: 1.5rem; 
 }
 
 .controls-section {
   display: flex;
-  gap: 12px;
+  gap: 6px; 
   flex-wrap: wrap;
 }
 
-/* Buttons */
 .btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  font-weight: 600;
-  font-size: 15px;
-  border-radius: 10px;
+  gap: 4px; 
+  padding: 6px 12px; 
+  font-size: 11px; 
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
+}
+
+.btn span {
+  font-size: 13px; 
 }
 
 .btn::before {
@@ -184,8 +200,8 @@ export default {
 }
 
 .btn:not(:disabled):hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .btn:not(:disabled):active {
@@ -215,23 +231,23 @@ export default {
 
 .btn-start:not(:disabled):hover {
   background: linear-gradient(135deg, #ff8fb3 0%, #ff5da2 100%);
-  box-shadow: 0 8px 25px rgba(253, 121, 168, 0.4);
+  box-shadow: 0 4px 12px rgba(253, 121, 168, 0.3);
 }
 
 .rounds-schedule {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-  padding-top: 20px;
+  gap: 5px; 
+  margin-top: 8px; 
+  padding-top: 8px; 
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .round-card {
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px; 
+  padding: 5px; 
   text-align: center;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
@@ -239,23 +255,22 @@ export default {
 
 .round-number {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 10px; 
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 4px;
+  margin-bottom: 1px;
 }
 
 .round-distance {
-  font-size: 12px;
+  font-size: 9px; 
   color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   font-weight: 600;
 }
 
 .round-status {
-  font-size: 18px;
-  margin-top: 4px;
+  font-size: 13px; 
+  margin-top: 1px;
 }
-
 
 .round-completed {
   background: rgba(34, 197, 94, 0.12);
@@ -274,19 +289,19 @@ export default {
 .round-active {
   background: rgba(253, 121, 168, 0.2);
   border-color: #fd79a8;
-  box-shadow: 0 0 30px rgba(253, 121, 168, 0.6),
-    0 0 15px rgba(253, 121, 168, 0.4) inset;
+  box-shadow: 0 0 15px rgba(253, 121, 168, 0.4),
+    0 0 8px rgba(253, 121, 168, 0.25) inset;
   animation: pulse-glow-dark 2s infinite;
 }
 
 .round-active .round-number,
 .round-active .round-distance {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(253, 121, 168, 0.8);
+  text-shadow: 0 0 6px rgba(253, 121, 168, 0.6);
 }
 
 .round-active .round-status {
-  filter: drop-shadow(0 0 8px rgba(253, 121, 168, 0.8));
+  filter: drop-shadow(0 0 5px rgba(253, 121, 168, 0.6));
 }
 
 .round-current {
@@ -312,13 +327,13 @@ export default {
 @keyframes pulse-glow-dark {
   0%,
   100% {
-    box-shadow: 0 0 30px rgba(253, 121, 168, 0.6),
-      0 0 15px rgba(253, 121, 168, 0.4) inset;
+    box-shadow: 0 0 15px rgba(253, 121, 168, 0.4),
+      0 0 8px rgba(253, 121, 168, 0.25) inset;
     border-color: #fd79a8;
   }
   50% {
-    box-shadow: 0 0 45px rgba(253, 121, 168, 0.9),
-      0 0 25px rgba(253, 121, 168, 0.6) inset;
+    box-shadow: 0 0 25px rgba(253, 121, 168, 0.7),
+      0 0 12px rgba(253, 121, 168, 0.4) inset;
     border-color: #ff8fb3;
   }
 }
@@ -348,8 +363,8 @@ export default {
   }
 
   .btn {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 5px 10px;
+    font-size: 10px;
   }
 }
 </style>
