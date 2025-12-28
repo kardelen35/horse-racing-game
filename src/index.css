@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-lighter;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded;
+}
+
+body {
+  @apply bg-gradient-to-br from-dark-bg to-gray-900 text-white min-h-screen;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
